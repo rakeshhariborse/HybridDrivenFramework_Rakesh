@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.technocredits.orghrm.testscripts.TC_1_LoginTest">
+      <class name="com.technocredits.orghrm.testscripts.TC_3_SettingsAbout">
         <methods>
-          <include name="loginTest"/>
+          <include name="TC3_SettingsAbout"/>
         </methods>
-      </class> <!-- com.technocredits.orghrm.testscripts.TC_1_LoginTest -->
+      </class> <!-- com.technocredits.orghrm.testscripts.TC_3_SettingsAbout -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
