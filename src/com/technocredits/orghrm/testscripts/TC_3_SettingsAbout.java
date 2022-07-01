@@ -49,10 +49,24 @@ public class TC_3_SettingsAbout {
 		
 		System.out.println("8. Click on About");
 		DashboardPage.clickSettingOptionAbout();
+		Assert.assertTrue(DashboardPage.isCompanyNameDisplayedInAbout());  //waiting till
 		System.out.println("9. Verify Employee is more than 0");
-		System.out.println("10. Verify the company details fields are getting displayed on information alert (Company Name, Version, Employees, Users & Renewal on)");
-		System.out.println("11. Click on OK button on popup.");
-
+		Assert.assertTrue(DashboardPage.isNonZeroEmployee());
 		
+		System.out.println("10. Verify the company details fields are getting displayed on information alert (Company Name, Version, Employees, Users & Renewal on)");
+		List<String> listOfExpectedAboutsOptionsTitles = new ArrayList<>();
+		listOfExpectedAboutsOptionsTitles.add("Company Name");listOfExpectedAboutsOptionsTitles.add("Version");
+		listOfExpectedAboutsOptionsTitles.add("Employees");listOfExpectedAboutsOptionsTitles.add("Users");
+		listOfExpectedAboutsOptionsTitles.add("Renewal on");
+		System.out.println(listOfExpectedAboutsOptionsTitles);
+		System.out.println(DashboardPage.getTitlesOfAboutOptions());
+		
+		Assert.assertEquals(DashboardPage.getNumberOfAboutOptions(), 5 , 
+				"5 options are not present, there are Only " + DashboardPage.getTitlesOfAboutOptions() + " options displayed.");
+		
+		Assert.assertEquals(listOfExpectedAboutsOptionsTitles,DashboardPage.getTitlesOfAboutOptions());
+		
+		System.out.println("11. Click on OK button on popup.");
+		DashboardPage.clickOnOKOfAbout();	
 	}	
 }

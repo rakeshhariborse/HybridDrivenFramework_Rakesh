@@ -58,8 +58,8 @@ public class DashboardPage extends PredefinedActions{
 	public WebElement getSettingIcon() {
 		return driver.findElement(By.xpath("//a[@class='password-action profile-context-menu-handler']//i[text()='ohrm_settings']"));
 	}
-	public void isSettingIconDisplayed() {
-		getSettingIcon().isDisplayed();
+	public boolean isSettingIconDisplayed() {
+		return getSettingIcon().isDisplayed();
 	}
 	public void clickOnSettingIcon() {
 		getSettingIcon().click();
@@ -94,4 +94,41 @@ public class DashboardPage extends PredefinedActions{
 		getSettingOptionsList().get(1).click();
 	}
 	
+	public boolean isCompanyNameDisplayedInAbout() {
+		return driver.findElement(By.xpath("//p[contains(text(),'Company Name:')]")).isDisplayed();
+	}
+	
+	//ABOUT OPTIONS
+	public List<WebElement> getAboutOptionsList(){
+		List<WebElement> listOfAboutOptions = new ArrayList<>();
+		listOfAboutOptions = driver.findElements(By.xpath("//div[@id='companyInfo']//div[@class='row']//p"));
+		return listOfAboutOptions;
+	}
+	
+	//NUMBER OF ABOUT OPTIONS
+	public int getNumberOfAboutOptions(){
+		return getAboutOptionsList().size();
+	}
+	
+	//TITLES OF ABOUT OPTIONS
+	public List<String> getTitlesOfAboutOptions(){
+		List<String> listOfOptionsTitles = new ArrayList<>();
+		for (WebElement option : getAboutOptionsList()) {
+			listOfOptionsTitles.add(option.getText().split(":")[0]);
+		}
+		return listOfOptionsTitles;
+	}
+	
+	public boolean isNonZeroEmployee() {
+		 String n = driver.findElement(By.xpath("//div[@id='companyInfo']//div[@class='row']//p[contains(text(),'Employee')]")).getText().split(" ")[1];
+		 return Integer.parseInt(n)!=0;
+	}
+	
+	public void clickOnOKOfAbout() {
+		driver.findElement(By.id("heartbeatSubmitBtn")).click();
+		
+	}
+	public void clickOnCancelOfAbout() {
+		driver.findElement(By.id("heartbeatCancelBtn")).click();
+	}
 }
